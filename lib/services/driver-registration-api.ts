@@ -45,6 +45,11 @@ export interface VehicleType {
 export interface OTPSendRequest {
   email: string;
   purpose: 'verification' | 'password_reset';
+  user_type?: 'client' | 'driver' | 'admin';
+  phone?: string;
+  phone_number?: string;
+  country_code?: string;
+  full_name?: string;
 }
 
 export interface OTPSendResponse {
@@ -250,6 +255,11 @@ export async function sendOTP(request: OTPSendRequest): Promise<OTPSendResponse>
       body: JSON.stringify({
         email: request.email.toLowerCase().trim(),
         purpose: request.purpose,
+        user_type: request.user_type || 'client',
+        phone: request.phone,
+        phone_number: request.phone_number,
+        country_code: request.country_code,
+        full_name: request.full_name,
       }),
       signal: controller.signal,
     });

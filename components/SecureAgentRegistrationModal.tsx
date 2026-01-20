@@ -202,8 +202,14 @@ export function SecureAgentRegistrationModal({
         return;
       }
 
-      // Send OTP
-      await sendOTP({ email, purpose: 'verification' });
+      // Send OTP for driver registration
+      await sendOTP({ 
+        email, 
+        purpose: 'verification',
+        user_type: 'driver',
+        full_name: fullName,
+        phone: phone,
+      });
       setCanResendOtp(false);
       
       // Wait before allowing resend
@@ -473,18 +479,10 @@ export function SecureAgentRegistrationModal({
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="relative">
-          <DialogTitle className="text-center pr-8">
+        <DialogHeader>
+          <DialogTitle className="text-center">
             {currentStep !== 'success' ? 'Become a Deligo Driver' : 'Registration Complete'}
           </DialogTitle>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-0 top-0 rounded-full"
-            onClick={onClose}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
 
         {/* Progress indicator */}
