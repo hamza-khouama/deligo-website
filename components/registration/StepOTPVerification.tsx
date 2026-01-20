@@ -78,6 +78,13 @@ export function StepOTPVerification({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Ensure OTP is exactly 5 digits before validating
+    if (otp.length !== 5) {
+      setOtpError(['Please enter all 5 digits']);
+      return;
+    }
+    
     const result = validateOTP(otp);
     setOtpError(result.errors);
     
@@ -154,7 +161,7 @@ export function StepOTPVerification({
         <Button
           type="submit"
           className="w-full bg-[#10B981] hover:bg-[#059669] text-white"
-          disabled={isLoading || otp.length < 6}
+          disabled={isLoading || otp.length < 5 || otpError.length > 0}
         >
           {isLoading ? (
             <>
