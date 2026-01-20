@@ -3,7 +3,7 @@
   "buildCommand": "pnpm build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "pnpm install",
+  "installCommand": "corepack enable && corepack prepare pnpm@10.28.1 --activate && pnpm install",
   "devCommand": "pnpm dev",
   "rewrites": [
     {
@@ -17,5 +17,10 @@
     "NEXT_PUBLIC_USER_URL": "https://user-service-uro8.onrender.com",
     "NEXT_PUBLIC_DRIVER_URL": "https://driver-service-dy7i.onrender.com",
     "NEXT_PUBLIC_VEHICLE_TYPE_SERVICE_URL": "https://vehicle-type-service.onrender.com"
+    ,
+    "NEXT_PUBLIC_ALLOWED_API_HOSTS": "auth-service-bc5l.onrender.com,driver-service-dy7i.onrender.com,vehicle-type-service.onrender.com,localhost:8006",
+    "NEXT_PUBLIC_AUTH_SERVICE_URL": "https://auth-service-bc5l.onrender.com",
+    "NEXT_PUBLIC_DRIVER_SERVICE_URL": "https://driver-service-dy7i.onrender.com",
+    "NODE_ENV": "production"
   }
 }
