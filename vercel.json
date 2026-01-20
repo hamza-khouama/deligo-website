@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "pnpm build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev",
+  "installCommand": "pnpm install",
+  "devCommand": "pnpm dev",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -15,6 +15,7 @@
     "NEXT_PUBLIC_API_URL": "https://admin-service-c6q8.onrender.com",
     "NEXT_PUBLIC_ADMIN_URL": "https://admin-service-c6q8.onrender.com",
     "NEXT_PUBLIC_USER_URL": "https://user-service-uro8.onrender.com",
-    "NEXT_PUBLIC_DRIVER_URL": "https://driver-service-dy7i.onrender.com"
+    "NEXT_PUBLIC_DRIVER_URL": "https://driver-service-dy7i.onrender.com",
+    "NEXT_PUBLIC_VEHICLE_TYPE_SERVICE_URL": "https://vehicle-type-service.onrender.com"
   }
 }
