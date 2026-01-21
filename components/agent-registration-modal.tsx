@@ -41,7 +41,7 @@ export default function AgentRegistrationModal({ isOpen, onClose }: AgentRegistr
       setLoadingVehicleTypes(true)
       try {
         console.log('Fetching vehicle types from vehicle-type-service...')
-        const response = await fetch(`${VEHICLE_TYPE_SERVICE_BASE}/public/vehicle-types`, {
+        const response = await fetch(`${VEHICLE_TYPE_SERVICE_BASE}/api/public/vehicle-types`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -292,12 +292,8 @@ export default function AgentRegistrationModal({ isOpen, onClose }: AgentRegistr
               ) : (
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                   {vehicleTypes.map((vehicle) => {
-                    // Get the display image URL
-                    const imageUrl = vehicle.vehicle_image_url 
-                      ? (vehicle.vehicle_image_url.startsWith('/') 
-                          ? `${API_ORIGIN}${vehicle.vehicle_image_url}` 
-                          : vehicle.vehicle_image_url)
-                      : "/placeholder.svg"
+                    // Use the Azure blob URL directly (no need to prefix with API_ORIGIN)
+                    const imageUrl = vehicle.vehicle_image_url || "/placeholder.svg";
                     
                     return (
                       <label

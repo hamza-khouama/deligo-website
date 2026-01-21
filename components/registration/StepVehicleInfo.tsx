@@ -21,11 +21,14 @@ import {
   Truck
 } from 'lucide-react';
 import { validatePhone, validateLicensePlate } from '@/lib/security/validation';
+import Image from 'next/image';
 
 export interface VehicleType {
   id: string | number;
   name: string;
   description?: string;
+  vehicle_image_url?: string;
+  map_icon_url?: string;
 }
 
 interface StepVehicleInfoProps {
@@ -195,9 +198,20 @@ export function StepVehicleInfo({
                     htmlFor={`vehicle-${type.id}`}
                     className="flex flex-col items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all peer-checked:border-[#10B981] peer-checked:bg-[#10B981]/5 hover:border-gray-300 hover:bg-gray-50"
                   >
-                    <div className="text-gray-600 peer-checked:text-[#10B981] mb-2">
-                      {getVehicleIcon(type.name)}
-                    </div>
+                    {type.vehicle_image_url ? (
+                      <div className="relative w-16 h-12 mb-2">
+                        <Image
+                          src={type.vehicle_image_url}
+                          alt={type.name}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="text-gray-600 peer-checked:text-[#10B981] mb-2">
+                        {getVehicleIcon(type.name)}
+                      </div>
+                    )}
                     <span className="text-sm font-medium text-gray-700">
                       {type.name}
                     </span>

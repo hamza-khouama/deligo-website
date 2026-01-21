@@ -8,6 +8,13 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'deligomalek.blob.core.windows.net',
+        pathname: '/**',
+      },
+    ],
   },
   // Security headers (additional to middleware)
   async headers() {

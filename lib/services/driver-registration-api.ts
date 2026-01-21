@@ -162,7 +162,7 @@ export async function fetchVehicleCategories(): Promise<VehicleCategory[]> {
   const controller = createTimeoutController();
   
   try {
-    const response = await fetch(`${VEHICLE_TYPE_SERVICE_BASE}/public/categories`, {
+    const response = await fetch(`${VEHICLE_TYPE_SERVICE_BASE}/api/public/categories`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -189,7 +189,7 @@ export async function fetchVehicleTypesByCategory(categoryId: string): Promise<V
   
   try {
     const response = await fetch(
-      `${VEHICLE_TYPE_SERVICE_BASE}/public/categories/${categoryId}/vehicle-types`,
+      `${VEHICLE_TYPE_SERVICE_BASE}/api/public/categories/${categoryId}/vehicle-types`,
       {
         method: 'GET',
         headers: {
@@ -217,7 +217,7 @@ export async function fetchVehicleTypes(categorySlug?: string): Promise<VehicleT
   const controller = createTimeoutController();
   
   try {
-    let url = `${VEHICLE_TYPE_SERVICE_BASE}/public/vehicle-types`;
+    let url = `${VEHICLE_TYPE_SERVICE_BASE}/api/public/vehicle-types`;
     if (categorySlug) {
       url += `?category_slug=${encodeURIComponent(categorySlug)}`;
     }
