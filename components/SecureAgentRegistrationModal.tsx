@@ -104,7 +104,10 @@ export function SecureAgentRegistrationModal({
   const [licensePlate, setLicensePlate] = useState('');
   const [plateFormat, setPlateFormat] = useState<'TU' | 'RS'>('TU');
   const [documents, setDocuments] = useState<Documents>({
-    drivingLicense: { file: null },
+    idCardFront: { file: null },
+    idCardBack: { file: null },
+    licenseFront: { file: null },
+    licenseBack: { file: null },
     vehicleRegistration: { file: null },
     insuranceDocument: { file: null },
     workPatent: { file: null },
@@ -149,7 +152,10 @@ export function SecureAgentRegistrationModal({
         setLicensePlate('');
         setPlateFormat('TU');
         setDocuments({
-          drivingLicense: { file: null },
+          idCardFront: { file: null },
+          idCardBack: { file: null },
+          licenseFront: { file: null },
+          licenseBack: { file: null },
           vehicleRegistration: { file: null },
           insuranceDocument: { file: null },
           workPatent: { file: null },
@@ -318,7 +324,10 @@ export function SecureAgentRegistrationModal({
 
             // Map document type to API field name
             const apiFieldMap: Record<string, string> = {
-              drivingLicense: 'driving_license',
+              idCardFront: 'id_card_front',
+              idCardBack: 'id_card_back',
+              licenseFront: 'license_front',
+              licenseBack: 'license_back',
               vehicleRegistration: 'vehicle_registration',
               insuranceDocument: 'insurance_document',
               workPatent: 'work_patent',
@@ -340,7 +349,10 @@ export function SecureAgentRegistrationModal({
             });
 
             const apiFieldMap: Record<string, string> = {
-              drivingLicense: 'driving_license',
+              idCardFront: 'id_card_front',
+              idCardBack: 'id_card_back',
+              licenseFront: 'license_front',
+              licenseBack: 'license_back',
               vehicleRegistration: 'vehicle_registration',
               insuranceDocument: 'insurance_document',
               workPatent: 'work_patent',
@@ -366,7 +378,7 @@ export function SecureAgentRegistrationModal({
           full_name: fullName,
           phone_number: phone,
           registration_token: registrationToken,
-          vehicle_type_id: vehicleType ? parseInt(vehicleType) : undefined,
+          vehicle_type_id: vehicleType || undefined,  // Send as string UUID, not parsed to int
           license_plate: licensePlate || undefined,
         },
         processedDocs

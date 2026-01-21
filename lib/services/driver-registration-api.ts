@@ -76,7 +76,7 @@ export interface DriverRegistrationRequest {
   full_name: string;
   phone_number: string;
   registration_token: string;
-  vehicle_type_id?: number;
+  vehicle_type_id?: string;  // Changed to string to support UUID
   license_plate?: string;
 }
 
@@ -356,7 +356,10 @@ export async function registerDriver(
 export async function registerDriverJSON(
   driverData: DriverRegistrationRequest,
   documents?: {
-    driving_license?: string; // Base64 encoded
+    id_card_front?: string; // Base64 encoded
+    id_card_back?: string;
+    license_front?: string;
+    license_back?: string;
     vehicle_registration?: string;
     insurance_document?: string;
     work_patent?: string;

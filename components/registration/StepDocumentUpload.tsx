@@ -33,7 +33,10 @@ export interface DocumentFile {
 }
 
 export interface Documents {
-  drivingLicense: DocumentFile;
+  idCardFront: DocumentFile;
+  idCardBack: DocumentFile;
+  licenseFront: DocumentFile;
+  licenseBack: DocumentFile;
   vehicleRegistration: DocumentFile;
   insuranceDocument: DocumentFile;
   workPatent: DocumentFile;
@@ -57,9 +60,27 @@ const DOCUMENT_CONFIG: Record<keyof Documents, {
   required: boolean;
   icon: React.ReactNode;
 }> = {
-  drivingLicense: {
-    label: 'Driving License',
+  idCardFront: {
+    label: 'ID Card (Front)',
+    description: 'Front side of your national ID card',
+    required: true,
+    icon: <FileText className="h-5 w-5" />,
+  },
+  idCardBack: {
+    label: 'ID Card (Back)',
+    description: 'Back side of your national ID card',
+    required: true,
+    icon: <FileText className="h-5 w-5" />,
+  },
+  licenseFront: {
+    label: 'Driving License (Front)',
     description: 'Front side of your valid driving license',
+    required: true,
+    icon: <FileText className="h-5 w-5" />,
+  },
+  licenseBack: {
+    label: 'Driving License (Back)',
+    description: 'Back side of your driving license',
     required: true,
     icon: <FileText className="h-5 w-5" />,
   },

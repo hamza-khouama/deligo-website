@@ -187,17 +187,23 @@ export function StepVehicleInfo({
               }}
               className="grid grid-cols-2 gap-3"
             >
-              {vehicleTypes.map((type) => (
+              {vehicleTypes.map((type) => {
+                const selected = vehicleType === String(type.id)
+                return (
                 <div key={type.id} className="relative">
-                  <RadioGroupItem
-                    value={String(type.id)}
-                    id={`vehicle-${type.id}`}
-                    className="peer sr-only"
-                  />
                   <Label
-                    htmlFor={`vehicle-${type.id}`}
-                    className="flex flex-col items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all peer-checked:border-[#10B981] peer-checked:bg-[#10B981]/5 hover:border-gray-300 hover:bg-gray-50"
+                    className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${selected ? 'border-[#10B981] bg-[#10B981]/5' : 'hover:border-gray-300 hover:bg-gray-50'}`}
+                    onClick={() => {
+                      onVehicleTypeChange(String(type.id))
+                      setTouched(prev => ({ ...prev, vehicleType: true }))
+                      setFieldErrors(prev => ({ ...prev, vehicleType: undefined }))
+                    }}
                   >
+                    <RadioGroupItem
+                      value={String(type.id)}
+                      className="sr-only"
+                    />
+
                     {type.vehicle_image_url ? (
                       <div className="relative w-16 h-12 mb-2">
                         <Image
@@ -208,7 +214,7 @@ export function StepVehicleInfo({
                         />
                       </div>
                     ) : (
-                      <div className="text-gray-600 peer-checked:text-[#10B981] mb-2">
+                      <div className={`text-gray-600 ${selected ? 'text-[#10B981]' : ''} mb-2`}>
                         {getVehicleIcon(type.name)}
                       </div>
                     )}
@@ -222,7 +228,7 @@ export function StepVehicleInfo({
                     )}
                   </Label>
                 </div>
-              ))}
+              )})}
             </RadioGroup>
           )}
           
